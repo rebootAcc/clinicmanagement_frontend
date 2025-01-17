@@ -235,14 +235,14 @@ const Topheader = ({
                 </span>
               </div>
               <div className="border-t border-gray-200"></div>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setAddClinicShow(true)}
                 className="w-full px-4 py-2 flex justify-between items-center text-left text-gray-700 hover:bg-gray-100"
               >
                 Add Clinic
                 <MdAdd />
-              </button>
+              </button> */}
               <button
                 onClick={handelLogOut}
                 type="button"
@@ -289,7 +289,7 @@ const Topheader = ({
           addClinicShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4">
+        {/* <div className="p-4">
           {addClinicShow && (
             <AddNewClinic
               handleClose={() => setAddClinicShow(false)}
@@ -297,7 +297,7 @@ const Topheader = ({
             />
           )}
           {!addClinicShow && null}
-        </div>
+        </div> */}
       </div>
     </header>
   );

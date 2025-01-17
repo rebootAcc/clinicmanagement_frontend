@@ -27,6 +27,7 @@ const Dashboard = () => {
   const { user, favClinic } = useContext(AuthContext);
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalPrescription, setTotalPrescription] = useState(0);
+  const [todaysFollowUpdate, setTodaysFollowUpdate] = useState(0);
   const [loading, setLoading] = useState(false);
   const [patientDocument, setPatientDocument] = useState(false);
 
@@ -73,6 +74,7 @@ const Dashboard = () => {
       setTotalPages(response.data.totalPages);
       setTotalPatients(response.data.totalDocuments);
       setTotalPrescription(response.data.totalPrescriptions);
+      setTodaysFollowUpdate(response.data.latestFollowupdateCount);
 
       setCurrentPage(page);
     } catch (error) {
@@ -361,6 +363,7 @@ const Dashboard = () => {
           <PerformanceComponent
             totalPatients={totalPatients}
             totalPrescription={totalPrescription}
+            todaysFollowUpdate={todaysFollowUpdate}
           />
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-3 w-full lg:flex-row gap-4 justify-between overflow-x-hidden py-4  ">

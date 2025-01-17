@@ -43,139 +43,139 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
 
   const dentalchartUR = [
     {
-      value: "UL8",
+      value: "UR8",
       name: "8",
-    },
-    {
-      value: "UL7",
-      name: "7",
-    },
-    {
-      value: "UL6",
-      name: "6",
-    },
-    {
-      value: "UL5",
-      name: "5",
-    },
-    {
-      value: "UL4",
-      name: "4",
-    },
-    {
-      value: "UL3",
-      name: "3",
-    },
-    {
-      value: "UL2",
-      name: "2",
-    },
-    {
-      value: "UL1",
-      name: "1",
-    },
-  ];
-  const dentalchartUL = [
-    {
-      value: "UR1",
-      name: "1",
-    },
-    {
-      value: "UR2",
-      name: "2",
-    },
-    {
-      value: "UR3",
-      name: "3",
-    },
-    {
-      value: "UR4",
-      name: "4",
-    },
-
-    {
-      value: "UR5",
-      name: "5",
-    },
-    {
-      value: "UR6",
-      name: "6",
     },
     {
       value: "UR7",
       name: "7",
     },
     {
-      value: "UR8",
+      value: "UR6",
+      name: "6",
+    },
+    {
+      value: "UR5",
+      name: "5",
+    },
+    {
+      value: "UR4",
+      name: "4",
+    },
+    {
+      value: "UR3",
+      name: "3",
+    },
+    {
+      value: "UR2",
+      name: "2",
+    },
+    {
+      value: "UR1",
+      name: "1",
+    },
+  ];
+  const dentalchartUL = [
+    {
+      value: "UL1",
+      name: "1",
+    },
+    {
+      value: "UL2",
+      name: "2",
+    },
+    {
+      value: "UL3",
+      name: "3",
+    },
+    {
+      value: "UL4",
+      name: "4",
+    },
+
+    {
+      value: "UL5",
+      name: "5",
+    },
+    {
+      value: "UL6",
+      name: "6",
+    },
+    {
+      value: "UL7",
+      name: "7",
+    },
+    {
+      value: "UL8",
       name: "8",
     },
   ];
   const dentalchartLR = [
     {
-      value: "LL8",
+      value: "LR8",
       name: "8",
-    },
-    {
-      value: "LL7",
-      name: "7",
-    },
-    {
-      value: "LL6",
-      name: "6",
-    },
-    {
-      value: "LL5",
-      name: "5",
-    },
-    {
-      value: "LL4",
-      name: "4",
-    },
-    {
-      value: "LL3",
-      name: "3",
-    },
-    {
-      value: "LL2",
-      name: "2",
-    },
-    {
-      value: "LL1",
-      name: "1",
-    },
-  ];
-  const dentalchartLL = [
-    {
-      value: "LR1",
-      name: "1",
-    },
-    {
-      value: "LR2",
-      name: "2",
-    },
-    {
-      value: "LR3",
-      name: "3",
-    },
-    {
-      value: "LR4",
-      name: "4",
-    },
-
-    {
-      value: "LR5",
-      name: "5",
-    },
-    {
-      value: "LR6",
-      name: "6",
     },
     {
       value: "LR7",
       name: "7",
     },
     {
-      value: "LR8",
+      value: "LR6",
+      name: "6",
+    },
+    {
+      value: "LR5",
+      name: "5",
+    },
+    {
+      value: "LR4",
+      name: "4",
+    },
+    {
+      value: "LR3",
+      name: "3",
+    },
+    {
+      value: "LR2",
+      name: "2",
+    },
+    {
+      value: "LR1",
+      name: "1",
+    },
+  ];
+  const dentalchartLL = [
+    {
+      value: "LL1",
+      name: "1",
+    },
+    {
+      value: "LL2",
+      name: "2",
+    },
+    {
+      value: "LL3",
+      name: "3",
+    },
+    {
+      value: "LL4",
+      name: "4",
+    },
+
+    {
+      value: "LL5",
+      name: "5",
+    },
+    {
+      value: "LL6",
+      name: "6",
+    },
+    {
+      value: "LL7",
+      name: "7",
+    },
+    {
+      value: "LL8",
       name: "8",
     },
   ];

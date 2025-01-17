@@ -342,8 +342,8 @@ const PrescriptionDetails = () => {
                   ))}
                 </div>
                 <div className="bg-[#F8F8F8] h-full p-4 w-[60%] rounded-xl mx-4 flex flex-col">
-                  <div className="flex flex-col gap-2 h-[10rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">
+                  <div className="flex flex-col gap-2 h-[9rem]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
                       Medical History
                     </h1>
                     <div className="flex  flex-col ">
@@ -367,7 +367,7 @@ const PrescriptionDetails = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[7rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">CC</h1>
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">CC</h1>
                     <div className="flex flex-col">
                       {prescriptionData.prescriptions[0].chiefComplain.map(
                         (cc, index) => (
@@ -383,7 +383,7 @@ const PrescriptionDetails = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[12rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">O/E</h1>
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">O/E</h1>
                     <div className="flex flex-col">
                       {prescriptionData.prescriptions[0].onExamination.map(
                         (oe, index) => (
@@ -401,7 +401,7 @@ const PrescriptionDetails = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[8rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
                       Investigation
                     </h1>
                     <div className="flex flex-col">
@@ -414,11 +414,11 @@ const PrescriptionDetails = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2 min-h-[10rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">
+                  <div className="flex flex-col gap-2 min-h-[9rem]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
                       Radiography
                     </h1>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 gap-2">
                       {prescriptionData.prescriptions[0].radiography.map(
                         (rad, index) => (
                           <p
@@ -432,8 +432,8 @@ const PrescriptionDetails = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2 min-h-[12rem]">
-                    <h1 className="text-base/[0px] text-[#3B3B3B]">Advice</h1>
+                  <div className="flex flex-col gap-2 min-h-[11rem]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B]">Advice</h1>
                     <div className="">
                       {prescriptionData.prescriptions[0].advices.map(
                         (advice, index) => (
@@ -454,7 +454,7 @@ const PrescriptionDetails = () => {
               </div>
             </div>
             <div className="bg-white  a4-container">
-              <div className="flex flex-row gap-4 p-4 w-full border-b  items-center">
+              {/* <div className="flex flex-row gap-4 p-4 w-full border-b  items-center">
                 <div className="w-[20%]">
                   <img
                     src="/images/dentitydentallogo.png"
@@ -479,7 +479,7 @@ const PrescriptionDetails = () => {
                     <div>Time: {prescriptiontime}</div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="w-full flex flex-col gap-3">
                 <h1 className="px-4 pt-4 text-2xl text-custom-blue font-medium">

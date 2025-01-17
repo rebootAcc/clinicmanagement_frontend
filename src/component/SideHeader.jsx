@@ -44,6 +44,12 @@ const AdminSideHeader = () => {
       name: "Stock",
       link: "/add-and-manage-stocks",
     },
+    {
+      icon: "/icons/attendance.svg",
+      name: "Attendance",
+      link: "https://onlinerealsoft.com/",
+      target: "_blank",
+    },
   ];
 
   const handleIconClick = (index) => {
@@ -92,6 +98,7 @@ const AdminSideHeader = () => {
               {item.link ? (
                 <Link
                   to={item.link}
+                  target={item.target || "_self"}
                   className={` xl:text-base xxl:text-xl xlg:text-sm text-xs font-semibold cursor-pointer hover:text-custom-blue ml-2 ${
                     location.pathname === item.link
                       ? "text-[#27B3FF]"

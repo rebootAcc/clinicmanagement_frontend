@@ -23,11 +23,8 @@ const RenderDentalChart = ({ dentalChart }) => {
           default:
             // Render default full-border box for unmatched regions
             return (
-              <div
-                key={index}
-                className="size-3 border cursor-pointer flex justify-center items-center text-lg font-medium border-[#333333]"
-              >
-                {chart}
+              <div key={index} className="size-4  cursor-pointer  text-xs  ">
+                {chart},
               </div>
             );
         }

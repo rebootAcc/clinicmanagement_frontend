@@ -1,6 +1,10 @@
 import React from "react";
 
-const PerformanceComponent = ({ totalPatients, totalPrescription }) => {
+const PerformanceComponent = ({
+  totalPatients,
+  totalPrescription,
+  todaysFollowUpdate,
+}) => {
   const details = [
     {
       icons: "/icons/patients.svg",
@@ -14,7 +18,7 @@ const PerformanceComponent = ({ totalPatients, totalPrescription }) => {
     },
     {
       icons: "/icons/followup.svg",
-      totalnumber: "1268+",
+      totalnumber: `${todaysFollowUpdate}`,
       name: "Followup",
     },
     { icons: "/icons/totaldue.svg", totalnumber: "1268+", name: "Total Due" },
