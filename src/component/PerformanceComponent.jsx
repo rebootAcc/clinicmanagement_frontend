@@ -4,6 +4,7 @@ const PerformanceComponent = ({
   totalPatients,
   totalPrescription,
   todaysFollowUpdate,
+  totalPaymentCollected,
 }) => {
   const details = [
     {
@@ -21,7 +22,11 @@ const PerformanceComponent = ({
       totalnumber: `${todaysFollowUpdate}`,
       name: "Followup",
     },
-    { icons: "/icons/totaldue.svg", totalnumber: "1268+", name: "Total Due" },
+    {
+      icons: "/icons/totaldue.svg",
+      totalnumber: `${totalPaymentCollected}`,
+      name: "Payment",
+    },
   ];
   return (
     <div className="flex flex-col gap-4">

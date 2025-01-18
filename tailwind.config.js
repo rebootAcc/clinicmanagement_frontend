@@ -11,6 +11,7 @@ export default {
         xl: "1440px",
         xxl: "1780px",
       },
+
       colors: {
         "custom-orange": "#FA5503",
         "custom-blue": "#27B3FF",

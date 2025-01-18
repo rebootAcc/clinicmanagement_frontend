@@ -283,8 +283,32 @@ const EditTcCard = ({ handleClose, tcCardId, fetchTCCards }) => {
               <span className="w-[20%]">{entry.stepDone}</span>
               <span className="w-[20%]">{entry.nextAppointment}</span>
               <span className="w-[10%]">{entry.nextStep}</span>
-              <span className="w-[10%]">{entry.payment}</span>
-              <span className="w-[10%]">{entry.due}</span>
+              {/* Editable Payment Field */}
+              <input
+                name="payment"
+                value={entry.payment}
+                onChange={(e) => {
+                  const updatedEntries = [...form2Entries];
+                  updatedEntries[index].payment = e.target.value;
+                  setForm2Entries(updatedEntries);
+                }}
+                type="text"
+                placeholder="Payment"
+                className="w-[10%] h-[2.5rem] rounded px-2 outline-none"
+              />
+              {/* Editable Due Field */}
+              <input
+                name="due"
+                value={entry.due}
+                onChange={(e) => {
+                  const updatedEntries = [...form2Entries];
+                  updatedEntries[index].due = e.target.value;
+                  setForm2Entries(updatedEntries);
+                }}
+                type="text"
+                placeholder="Due"
+                className="w-[10%] h-[2.5rem] rounded px-2 outline-none"
+              />
               <span className="w-[10%]">{entry.paymentMethod}</span>
               <span className="w-[15%]">{entry.comment}</span>
               <button onClick={() => removeForm2Entry(index)}>
