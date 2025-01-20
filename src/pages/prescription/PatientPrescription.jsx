@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminDashboardTemplate from "../../template/AdminDashboardTemplate";
 import Topheader from "../../component/Topheader";
+import { AuthContext } from "../../context/AuthContext";
 
 const PatientPrescriptions = () => {
   const { patientId } = useParams();
   const [prescriptions, setPrescriptions] = useState([]);
   const [patientName, setPatientName] = useState("");
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   // Fetch prescriptions for the patient
   useEffect(() => {
@@ -75,12 +77,16 @@ const PatientPrescriptions = () => {
                     >
                       View
                     </button>
-                    <Link
-                      to={`/prescription/${patientId}/edit/${prescription._id}`}
-                      className="mt-2 px-4 py-2 bg-custom-blue text-white rounded hover:bg-blue-600 transition"
-                    >
-                      Edit
-                    </Link>
+                    {user.designation !== "Staff" ? (
+                      <Link
+                        to={`/prescription/${patientId}/edit/${prescription._id}`}
+                        className="mt-2 px-4 py-2 bg-custom-blue text-white rounded hover:bg-blue-600 transition"
+                      >
+                        Edit
+                      </Link>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               );

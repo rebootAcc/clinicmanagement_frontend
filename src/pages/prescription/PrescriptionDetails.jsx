@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import TopHeaderMini from "../../component/TopHeaderMini";
 import { FiEdit, FiPrinter } from "react-icons/fi";
 import { AiOutlineDownload } from "react-icons/ai";
@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PrescriptionWhatsapp from "../../component/prescription/PrescriptionWhatsapp";
 import RenderDentalChart from "../../component/dentalchartedesign/RenderDentalChart";
+import { AuthContext } from "../../context/AuthContext";
 
 const PrescriptionDetails = () => {
   const { patientId, prescriptionId } = useParams();
@@ -20,6 +21,7 @@ const PrescriptionDetails = () => {
   const [isViewing, setIsViewing] = useState(false);
   const [isWhatsappModalOpen, setIsWhatsappModalOpen] = useState(false);
   const [clinicData, setClinicData] = useState(null);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchPrescriptionData = async () => {
@@ -528,19 +530,32 @@ const PrescriptionDetails = () => {
                     )
                   )}
                 </div>
+                <div className="w-full flex justify-end items-end px-8">
+                  {user.doctorSignature?.secure_url ? (
+                    <img
+                      src={user.doctorSignature.secure_url}
+                      alt="signature"
+                      className="h-[5rem] w-[5rem]"
+                    />
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
           <div className="pb-5  px-9 flex items-center justify-between">
             <div className="flex items-center gap-5">
-              <button
-                onClick={navigateToEditPage}
-                type="button"
-                className="inline-flex justify-center items-center gap-2 rounded-3xl bg-custom-blue text-white px-5 py-2"
-              >
-                <FiEdit className="size-3" />
-                <span className="text-base">Edit Prescription</span>
-              </button>
+              {user.designation !== "Staff" ? (
+                <button
+                  onClick={navigateToEditPage}
+                  type="button"
+                  className="inline-flex justify-center items-center gap-2 rounded-3xl bg-custom-blue text-white px-5 py-2"
+                >
+                  <FiEdit className="size-3" />
+                  <span className="text-base">Edit Prescription</span>
+                </button>
+              ) : (
+                ""
+              )}
               <button
                 type="button"
                 onClick={handleDownload}
@@ -550,13 +565,6 @@ const PrescriptionDetails = () => {
                 <span className="text-base">Print</span>
               </button>
             </div>
-            <img
-              src="/images/signature.svg"
-              alt="signature"
-              height={40}
-              width={180}
-              className="w-[12.5vmax]"
-            />
           </div>
         </div>
       </div>

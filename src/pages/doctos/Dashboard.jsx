@@ -476,10 +476,23 @@ const Dashboard = () => {
                             Due {totalDue || 0}
                           </div>
                           <Link
-                            to={`/prescription/add/${item.patientId}`}
+                            to={
+                              user.designation !== "Staff"
+                                ? `/prescription/add/${item.patientId}`
+                                : "#"
+                            }
                             className={`priority-button ${
                               index % 2 === 0 ? "bg-white" : "bg-[#EEEEEE]"
+                            } ${
+                              user.designation === "Staff"
+                                ? "cursor-not-allowed opacity-50"
+                                : ""
                             }`}
+                            onClick={(e) => {
+                              if (user.designation === "Staff") {
+                                e.preventDefault();
+                              }
+                            }}
                           >
                             Start Visit
                           </Link>
