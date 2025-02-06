@@ -189,21 +189,30 @@ const Investigation = ({ onChange, existingData = [] }) => {
                     updateField(index, { searchTerm: value });
 
                     if (value.trim()) {
-                      fetchSuggestions(index); // Fetch specific suggestions
+                      fetchSuggestions(index);
                     } else {
-                      fetchRandomSuggestions(index); // Show random suggestions if input is empty
+                      fetchRandomSuggestions(index);
                     }
                   }}
                   onFocus={() => {
-                    if (!field.searchTerm) fetchRandomSuggestions(index); // Show random suggestions on focus if input is empty
+                    if (!field.searchTerm) fetchRandomSuggestions(index);
                     updateField(index, { showSuggestions: true });
                   }}
-                  onBlur={() =>
-                    setTimeout(
-                      () => updateField(index, { showSuggestions: false }),
-                      150
-                    )
-                  }
+                  onBlur={() => {
+                    setTimeout(() => {
+                      if (
+                        fields[index].searchTerm.trim() &&
+                        !fields[index].investigationName
+                      ) {
+                        updateField(index, {
+                          investigationName: fields[index].searchTerm.trim(),
+                          showSuggestions: false,
+                        });
+                      } else {
+                        updateField(index, { showSuggestions: false });
+                      }
+                    }, 150);
+                  }}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                 />
                 <button

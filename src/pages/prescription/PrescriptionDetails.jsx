@@ -395,7 +395,7 @@ const PrescriptionDetails = () => {
                             key={index}
                           >
                             {cc.chiefComplainName} -
-                            <span className="marginTop">
+                            <span className="">
                               <RenderDentalChart dentalChart={cc.dentalChart} />
                             </span>
                           </p>
@@ -417,7 +417,7 @@ const PrescriptionDetails = () => {
                             <h3>{oe.onExaminationName}</h3>
                             <p>{oe.onExaminationArea.join(", ")}</p>
                             <p>{oe.onExaminationAdditionalNotes}</p>
-                            <div className="marginTop">
+                            <div className="">
                               <RenderDentalChart dentalChart={oe.dentalChart} />
                             </div>
                           </div>
@@ -451,7 +451,7 @@ const PrescriptionDetails = () => {
                             key={index}
                           >
                             {rad.radiographyName} -{" "}
-                            <div className="marginTop">
+                            <div className="">
                               <RenderDentalChart
                                 dentalChart={rad.dentalChart}
                               />
@@ -473,7 +473,7 @@ const PrescriptionDetails = () => {
                             key={index}
                           >
                             {advice.advicesName},{" "}
-                            <div className="marginTop">
+                            <div className="">
                               <RenderDentalChart
                                 dentalChart={advice.dentalChart}
                               />

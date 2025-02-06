@@ -13,13 +13,30 @@ const RenderDentalChart = ({ dentalChart }) => {
 
         switch (region) {
           case "UR":
-            return <UpperRight key={index} text={number} />;
+            return (
+              <div className="marginTop">
+                <UpperRight key={index} text={number} />{" "}
+              </div>
+            );
           case "UL":
-            return <UpperLeft key={index} text={number} />;
+            return (
+              <div className="marginTop">
+                {" "}
+                <UpperLeft key={index} text={number} />{" "}
+              </div>
+            );
           case "LL":
-            return <LowerLeft key={index} text={number} />;
+            return (
+              <div className="marginTop">
+                <LowerLeft key={index} text={number} />{" "}
+              </div>
+            );
           case "LR":
-            return <LowerRight key={index} text={number} />;
+            return (
+              <div className="marginTop">
+                <LowerRight key={index} text={number} />{" "}
+              </div>
+            );
           default:
             // Render default full-border box for unmatched regions
             return (

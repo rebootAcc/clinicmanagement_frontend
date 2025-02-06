@@ -221,12 +221,21 @@ const ChiefComplain = ({ onChange, existingComplaints = [] }) => {
                     if (!field.searchTerm) fetchRandomSuggestions(index); // Show random suggestions on focus if input is empty
                     updateField(index, { showSuggestions: true });
                   }}
-                  onBlur={() =>
-                    setTimeout(
-                      () => updateField(index, { showSuggestions: false }),
-                      150
-                    )
-                  }
+                  onBlur={() => {
+                    setTimeout(() => {
+                      if (
+                        fields[index].searchTerm.trim() &&
+                        !fields[index].chiefComplainName
+                      ) {
+                        updateField(index, {
+                          chiefComplainName: fields[index].searchTerm.trim(),
+                          showSuggestions: false,
+                        });
+                      } else {
+                        updateField(index, { showSuggestions: false });
+                      }
+                    }, 150);
+                  }}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                 />
 
