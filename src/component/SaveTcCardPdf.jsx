@@ -200,7 +200,13 @@ const SaveTcCardPdf = ({ tcCardId, patientId, fetchTCCards }) => {
           </div>
           <div className="flex flex-row ">
             <div className="w-[60%] px-6">Total Amount</div>
-            <div className="w-[40%] px-6">{tcCardData.totalPayment}</div>
+            <div className="w-[40%] px-6">
+              {" "}
+              {tcCardData.patientTcworkTypeDetails?.reduce(
+                (total, entry) => total + Number(entry.tcamount || 0),
+                0
+              )}
+            </div>
           </div>
         </div>
         <div className="flex flex-col p-4 ">

@@ -167,8 +167,8 @@ const Investigation = ({ onChange, existingData = [] }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex gap-5 pb-4 border-b border-[#00000033]">
-        <h3 className="text-black text-lg xl:text-xl min-w-[26.4vmax]">
+      <div className="flex gap-5 pb-2 xlg:pb-4 border-b border-[#00000033]">
+        <h3 className="text-black text-base lg:text-lg xl:text-xl min-w-[26.4vmax]">
           Investigations
         </h3>
       </div>

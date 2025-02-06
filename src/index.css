@@ -22,6 +22,10 @@ body {
   padding-bottom: 1.5rem;
 }
 
+.hide-action .marginTop {
+  margin-top: 0.5rem;
+}
+
 /*  loader patient page fetch data previous loader  */
 
 /* From Uiverse.io by Fadhilmagass */

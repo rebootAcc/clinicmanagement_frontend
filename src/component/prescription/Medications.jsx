@@ -53,7 +53,7 @@ const Medications = ({ onChange, existingMedications = [] }) => {
         e.preventDefault();
         if (activeIndex >= 0 && brandSuggestions[activeIndex]) {
           handleSelectSuggestion(index, brandSuggestions[activeIndex]);
-          setActiveIndex(-1); // Reset after selection
+          setActiveIndex(-1);
         }
       }
     }
@@ -62,7 +62,6 @@ const Medications = ({ onChange, existingMedications = [] }) => {
   const formatFrequency = (value) => {
     value = value.replace(/[^01]/g, "").slice(0, 4);
 
-    // Insert hyphens after each character
     value = value
       .split("")
       .map((char, idx) => (idx > 0 ? `-${char}` : char))
@@ -194,11 +193,9 @@ const Medications = ({ onChange, existingMedications = [] }) => {
   const handleSaveMedication = async (index) => {
     const medication = medications[index];
 
-    // Split `medicineBrandName` into individual fields
     let [brandName, composition, strength] =
       medication.medicineBrandName.split(" - ");
 
-    // Prepare the data to send (set composition and strength to empty strings if not provided)
     const dataToSend = {
       medicineBrandName: brandName || medication.medicineBrandName,
       medicineComposition: composition ? composition.trim() : "",
@@ -221,7 +218,6 @@ const Medications = ({ onChange, existingMedications = [] }) => {
   };
 
   const handleAddField = () => {
-    // Add a blank template entry to medications
     setMedications((prev) => [...prev, { ...newMedicationTemplate }]);
   };
 
@@ -249,9 +245,9 @@ const Medications = ({ onChange, existingMedications = [] }) => {
 
     if (name === "medicineBrandName") {
       if (value) {
-        fetchSuggestions(value, index); // Fetch suggestions based on typed value
+        fetchSuggestions(value, index);
       } else {
-        fetchRandomSuggestions(index); // Show random suggestions if input is cleared
+        fetchRandomSuggestions(index);
       }
     } else if (name === "duration") {
       const suggestedText = suggestDuration(value);
@@ -281,26 +277,25 @@ const Medications = ({ onChange, existingMedications = [] }) => {
 
   const handleBlur = (index) => {
     setTimeout(() => {
-      // Hide suggestions after a small delay (100ms)
       setMedications((prev) =>
         prev.map((med, i) =>
           i === index ? { ...med, showBrandSuggestions: false } : med
         )
       );
-    }, 100); // Delay hiding suggestions
+    }, 100);
   };
 
   return (
     <div className="flex flex-col gap-9">
-      <h1 className="text-custom-gray text-lg xl:text-xl font-semibold py-4 border-b border-black/20">
+      <h1 className="text-custom-gray text-base lg:text-lg xl:text-xl font-semibold pb-2 xlg:pb-4 border-b border-black/20">
         Medications
       </h1>
       {medications.map((med, index) => (
-        <div key={index} className="flex gap-5 pb-9">
+        <div key={index} className="flex xlg:gap-4 gap-2 xl:gap-5 pb-9">
           <div className="flex flex-col w-[90%] gap-2">
-            <div className="flex flex-row gap-4 w-full">
-              <div className="relative w-full">
-                <div className="bg-white flex px-4 xl:px-6 py-1 xl:py-1 rounded gap-2">
+            <div className="flex flex-row xlg:gap-4 gap-2 xl:gap-5 w-full">
+              <div className="relative w-[50%] h-[3.5rem] bg-white px-2 xlg:px-4 xl:px-6 rounded">
+                <div className=" flex    gap-2">
                   <input
                     type="text"
                     ref={inputRefs.current[index]}
@@ -317,18 +312,18 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                     }
                     onChange={(e) => handleInputChange(index, e)}
                     onFocus={() => {
-                      setIsEditing(true); // Enter edit mode
+                      setIsEditing(true);
                       fetchRandomSuggestions(index);
                     }}
                     onBlur={() => handleBlur(index)}
                     onKeyDown={(e) => handleSearchDown(index, e)}
-                    className="bg-white rounded py-4 w-full px-6 outline-none text-lg xl:text-xl"
+                    className="bg-white  w-full h-[3.5rem] outline-none text-sm xlg:text-lg xl:text-xl"
                   />
                   <div className="flex justify-center items-center">
                     <button
                       type="button"
                       className="px-3 h-[2rem] rounded bg-[#f3f3f3] items-center justify-center text-sm text-custom-gray"
-                      onClick={() => handleSaveMedication(index)} // Call the function here
+                      onClick={() => handleSaveMedication(index)}
                     >
                       Add
                     </button>
@@ -359,7 +354,7 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                 name="dose"
                 value={med.dose}
                 onChange={(e) => handleInputChange(index, e)}
-                className="bg-white rounded py-4 px-6 outline-none text-lg xl:text-xl"
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[15%]  outline-none text-sm xlg:text-lg xl:text-xl"
               >
                 <option value="">Choose Dose</option>
                 <option value="1">1</option>
@@ -380,21 +375,21 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                     target: { name: "frequency", value: formattedValue },
                   });
                 }}
-                className="bg-white rounded py-4 px-6 outline-none text-lg xl:text-xl"
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[15%]   outline-none text-sm xlg:text-lg xl:text-xl"
               />
               <select
                 name="timing"
                 value={med.timing}
                 onChange={(e) => handleInputChange(index, e)}
-                className="bg-white rounded py-4 px-6 outline-none text-lg xl:text-xl"
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[20%] outline-none text-sm xlg:text-lg xl:text-xl"
               >
                 <option value="">Select Timing</option>
                 <option value="After Meal">After Meal</option>
                 <option value="Before Meal">Before Meal</option>
               </select>
             </div>
-            <div className="flex flex-row gap-4">
-              <div className="relative w-full">
+            <div className="flex flex-row xlg:gap-4 gap-2 xl:gap-5">
+              <div className="relative w-[30%]">
                 <input
                   type="text"
                   name="duration"
@@ -402,7 +397,7 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                   value={med.duration}
                   onChange={(e) => handleInputChange(index, e)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
-                  className="bg-white rounded py-4 px-6 w-full outline-none text-lg xl:text-xl"
+                  className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-full outline-none text-sm xlg:text-lg xl:text-xl"
                 />
                 {suggestion && (
                   <span
@@ -422,8 +417,8 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                 placeholder="Start From"
                 value={med.startFrom}
                 onChange={(e) => handleInputChange(index, e)}
-                className="bg-white rounded py-4 px-6 outline-none text-lg xl:text-xl"
-                min={new Date().toISOString().split("T")[0]} // Sets minimum date to today
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[20%] outline-none text-sm xlg:text-lg xl:text-xl"
+                min={new Date().toISOString().split("T")[0]}
               />
               <input
                 type="text"
@@ -431,7 +426,7 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                 placeholder="Instructions"
                 value={med.instructions}
                 onChange={(e) => handleInputChange(index, e)}
-                className="bg-white rounded py-4 w-full px-6 outline-none text-lg xl:text-xl"
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[25%] outline-none text-sm xlg:text-lg xl:text-xl"
               />
               <input
                 type="text"
@@ -439,14 +434,14 @@ const Medications = ({ onChange, existingMedications = [] }) => {
                 placeholder="Qty"
                 value={med.qty}
                 onChange={(e) => handleInputChange(index, e)}
-                className="bg-white rounded py-4 w-full px-6 outline-none text-lg xl:text-xl"
+                className="bg-white rounded xlg:p-4 px-2 xl:px-6 h-[3.5rem] w-[25%] outline-none text-sm xlg:text-lg xl:text-xl"
               />
             </div>
           </div>
-          <div className="flex flex-col gap-5 w-[10%] justify-between">
+          <div className="flex flex-col gap-2 w-[10%] justify-between">
             <button
               type="button"
-              className="text-[#E40000] inline-flex items-center justify-center bg-white rounded px-4 py-2 text-base min-w-[6vmax] flex-1"
+              className="text-[#E40000] inline-flex items-center justify-center bg-white rounded px-4 py-2 h-[3.5rem] text-lg xlg:text-xl w-full "
               onClick={() => handleRemoveField(index)}
               disabled={medications.length === 1}
             >
@@ -454,7 +449,7 @@ const Medications = ({ onChange, existingMedications = [] }) => {
             </button>
             <button
               type="button"
-              className="text-custom-green inline-flex items-center justify-center bg-white rounded px-4 py-2 text-base min-w-[6vmax] flex-1"
+              className="text-custom-green inline-flex items-center justify-center bg-white rounded px-4 py-2 h-[3.5rem] text-lg xlg:text-xl w-full"
               onClick={handleAddField}
             >
               <CiCirclePlus />

@@ -249,20 +249,6 @@ const Patients = () => {
     setShowAddPatient(true);
   };
 
-  const calculatePaymentSummary = (paymentDetails) => {
-    const totalPayment = paymentDetails.reduce(
-      (acc, payment) => acc + Number(payment.totalCharges || 0),
-      0
-    );
-    const totalPaid = paymentDetails.reduce(
-      (acc, payment) => acc + Number(payment.totalPaid || 0),
-      0
-    );
-    const totalDue = totalPayment - totalPaid;
-
-    return { totalPayment, totalPaid, totalDue };
-  };
-
   const handleAddPatient = (newPatient) => {
     setPatientsData((prevPatients) => [
       ...prevPatients,
@@ -310,7 +296,6 @@ const Patients = () => {
         `${import.meta.env.VITE_BASE_URL}/api/user/users?designation=Doctor`
       );
       const result = await response.data;
-      console.log(result);
 
       setDoctors(result);
     } catch (error) {
@@ -331,7 +316,7 @@ const Patients = () => {
         handleAddPatient={handleAddPatient}
       >
         {!(user.role === "admin" && user.designation === "Doctor") && (
-          <div className="flex items-center bg-[#F5F5F5] gap-3 rounded  relative xl:text-base text-xs xlg:text-sm text-custom-gray">
+          <div className="flex items-center bg-[#F5F5F5] gap-3 rounded  relative xl:text-base text-[10px] xlg:text-sm text-custom-gray">
             <select
               value={doctorFilter}
               onChange={(e) => setDoctorFilter(e.target.value)}
@@ -352,8 +337,8 @@ const Patients = () => {
           onClick={handleAddNewClick}
           className="flex items-center bg-custom-orange hover:bg-custom-blue gap-3 rounded px-2 xlg:px-3 h-[2.5rem] text-xs xl:text-base xlg:text-sm text-[#F5F5F5] transition-colors duration-300 ease-in-out"
         >
-          <GoPlusCircle />
-          <h3>Add Patient</h3>
+          <GoPlusCircle className="xlg:text-xl text-lg" />
+          <h3 className="lg:flex hidden">Add Patient</h3>
         </button>
       </Topheader>
 

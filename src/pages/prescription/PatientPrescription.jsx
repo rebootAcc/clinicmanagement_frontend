@@ -39,7 +39,7 @@ const PatientPrescriptions = () => {
         <h1 className="text-xl font-bold mb-4">
           Prescriptions for Patient {patientName}
         </h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 xlg:grid-cols-3 gap-4">
           {prescriptions.length > 0 ? (
             prescriptions.map((prescription, index) => {
               // Check if prescriptionPdf exists and is valid

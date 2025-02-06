@@ -188,15 +188,14 @@ const ChiefComplain = ({ onChange, existingComplaints = [] }) => {
       const updatedFields = fields.filter((_, i) => i !== index);
       setFields(updatedFields);
 
-      // Pass the updated data back to the parent
       onChange(updatedFields);
     }
   };
 
   return (
     <div className="flex flex-col  ">
-      <div className="flex gap-5 pb-4 border-b border-[#00000033]">
-        <h3 className="text-black text-lg xl:text-xl min-w-[26.4vmax]">
+      <div className="flex gap-5 pb-2 xlg:pb-4 border-b border-[#00000033]">
+        <h3 className="text-black text-base lg:text-lg xl:text-xl min-w-[26.4vmax]">
           Chief Complaints
         </h3>
       </div>
@@ -257,7 +256,7 @@ const ChiefComplain = ({ onChange, existingComplaints = [] }) => {
               )}
             </div>
             {field.dentalChart.length > 0 && (
-              <div className="text-sm text-gray-500 mt-2">
+              <div className="xlg:text-sm text-xs text-gray-500 mt-2">
                 Selected Dental Chart: {field.dentalChart.join(", ")}
               </div>
             )}
@@ -292,7 +291,7 @@ const ChiefComplain = ({ onChange, existingComplaints = [] }) => {
         ))}
       </div>
       <div
-        className={`fixed top-0 right-0 h-screen w-[60%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-screen w-[90%] lg:w-[80%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
           showDentalChart !== null ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -302,7 +301,7 @@ const ChiefComplain = ({ onChange, existingComplaints = [] }) => {
             onSelect={(selectedValues) =>
               addDentalChartSelection(selectedValues, showDentalChart)
             }
-            selectedValues={fields[showDentalChart]?.dentalChart || []} // Pass current selections
+            selectedValues={fields[showDentalChart]?.dentalChart || []}
           />
         )}
       </div>

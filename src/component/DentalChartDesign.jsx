@@ -27,12 +27,12 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
         (key) => selectedDentalChartII[key]
       ),
     ];
-    onSelect(selectedValues); // Send the selected values back to the parent
+    onSelect(selectedValues);
   };
 
   const handleCloseWithConfirm = () => {
-    confirmSelection(); // Confirm the current selection
-    handleClose(); // Close the modal
+    confirmSelection();
+    handleClose();
   };
 
   useEffect(() => {
@@ -366,7 +366,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartUR.map((item, index) => (
                 <div
-                  className={`size-10 border-r-4 border-b-4 cursor-pointer flex justify-center items-center text-lg font-medium ${
+                  className={`lg:size-10 size-9  border-r-4 border-b-4 cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -386,7 +386,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartUL.map((item, index) => (
                 <div
-                  className={`size-10 border-l-4 border-b-4  cursor-pointer flex justify-center items-center text-lg font-medium ${
+                  className={`lg:size-10 size-9 border-l-4 border-b-4  cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -406,7 +406,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartLR.map((item, index) => (
                 <div
-                  className={`size-10 border-t-4 border-r-4 cursor-pointer flex justify-center items-center text-lg font-medium ${
+                  className={`lg:size-10 size-9 border-t-4 border-r-4 cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -426,7 +426,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartLL.map((item, index) => (
                 <div
-                  className={`size-10 border-t-4 border-l-4 cursor-pointer flex justify-center items-center text-lg font-medium ${
+                  className={`lg:size-10 size-9 border-t-4 border-l-4 cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -451,7 +451,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center w-full">
               {dentalchartChildUR.map((item, index) => (
                 <div
-                  className={`size-10 border-r-4 border-b-4   flex justify-center items-center cursor-pointer text-lg font-medium ${
+                  className={`lg:size-10 size-9 border-r-4 border-b-4   flex justify-center items-center cursor-pointer text-base lg:text-lg font-medium ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -471,7 +471,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center">
               {dentalchartChildUL.map((item, index) => (
                 <div
-                  className={` size-10 border-l-4 border-b-4 cursor-pointer  flex justify-center items-center text-lg font-medium    ${
+                  className={` lg:size-10 size-9 border-l-4 border-b-4 cursor-pointer  flex justify-center items-center text-base lg:text-lg font-medium    ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -491,7 +491,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center">
               {dentalchartChildLR.map((item, index) => (
                 <div
-                  className={`size-10 border-t-4 border-r-4 cursor-pointer flex justify-center items-center text-lg font-medium  ${
+                  className={`lg:size-10 size-9 border-t-4 border-r-4 cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium  ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -511,7 +511,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row justify-center gap-2 items-center">
               {dentalchartChildLL.map((item, index) => (
                 <div
-                  className={`size-10 border-t-4 border-l-4  cursor-pointer flex justify-center items-center text-lg font-medium  ${
+                  className={`lg:size-10 size-9 border-t-4 border-l-4  cursor-pointer flex justify-center items-center text-base lg:text-lg font-medium  ${
                     selectedDentalChartI[item.value]
                       ? "border-custom-blue"
                       : "border-[#333333]"
@@ -542,7 +542,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartiiUR.map((item, index) => (
                 <div
-                  className={`size-10 border border-[#333333] flex justify-center items-center text-lg cursor-pointer font-medium  ${
+                  className={`lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -562,7 +562,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartiiUL.map((item, index) => (
                 <div
-                  className={`size-10 border border-[#333333] flex justify-center items-center text-lg cursor-pointer font-medium  ${
+                  className={`lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -582,7 +582,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartiiLR.map((item, index) => (
                 <div
-                  className={` size-10 border border-[#333333] flex justify-center items-center cursor-pointer text-lg font-medium  ${
+                  className={` lg:size-10 size-9 border border-[#333333] flex justify-center items-center cursor-pointer text-base lg:text-lg font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -602,7 +602,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="grid grid-cols-8 gap-2 items-center">
               {dentalchartiiLL.map((item, index) => (
                 <div
-                  className={` size-10 border border-[#333333] flex justify-center items-center text-lg cursor-pointer font-medium  ${
+                  className={` lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -627,7 +627,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center w-full">
               {dentalchartChildiiUR.map((item, index) => (
                 <div
-                  className={`size-10 border border-[#333333] flex justify-center items-center text-lg cursor-pointer font-medium  ${
+                  className={`lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -647,7 +647,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center">
               {dentalchartChildiiUL.map((item, index) => (
                 <div
-                  className={` size-10 border border-[#333333] flex justify-center items-center text-lg  cursor-pointer font-medium  ${
+                  className={` lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg  cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -667,7 +667,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row gap-2 items-center justify-center">
               {dentalchartChildiiLR.map((item, index) => (
                 <div
-                  className={`size-10 border border-[#333333] flex justify-center items-center text-lg cursor-pointer font-medium ${
+                  className={`lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg cursor-pointer font-medium ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"
@@ -687,7 +687,7 @@ const DentalChartDesign = ({ handleClose, onSelect, selectedValues = [] }) => {
             <div className="flex flex-row justify-center gap-2 items-center">
               {dentalchartChildiiLL.map((item, index) => (
                 <div
-                  className={`size-10 border border-[#333333] flex justify-center items-center text-lg  cursor-pointer font-medium  ${
+                  className={`lg:size-10 size-9 border border-[#333333] flex justify-center items-center text-base lg:text-lg  cursor-pointer font-medium  ${
                     selectedDentalChartII[item.value]
                       ? "bg-[#333333] text-white"
                       : "bg-transparent"

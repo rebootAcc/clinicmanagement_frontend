@@ -13,6 +13,7 @@ import EditPatientData from "../../component/EditPatientData";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import PatientDocumentAdd from "../../component/PatientDocumentAdd";
+import TodaysPaymentDetails from "../../component/TodaysPaymentDetails";
 
 const Dashboard = () => {
   const [patientsData, setPatientsData] = useState([]);
@@ -31,6 +32,8 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [patientDocument, setPatientDocument] = useState(false);
   const [totalPaymentCollected, settotalPaymentCollected] = useState(0);
+  const [showTodaysPaymentModal, setShowTodaysPaymentModal] = useState(false);
+  const [patientsWithPayments, setPatientsWithPayments] = useState([]);
 
   const getTodayDate = () => {
     const today = new Date();
@@ -84,6 +87,36 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const fetchPatientPayments = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/patients/get`,
+        {
+          params: {
+            page: currentPage,
+            limit: 20,
+            clinicId: favClinic._id,
+            doctorId: user.userId,
+            patientPaymentStartDate: dateFilter.startDate,
+            patientPaymentEndDate: dateFilter.endDate,
+          },
+        }
+      );
+      setPatientsWithPayments(response.data.data);
+    } catch (error) {
+      console.error("Error fetching payments:", error);
+    }
+  };
+
+  const handleTodaysPaymentModalOpen = () => {
+    setShowTodaysPaymentModal(true);
+    fetchPatientPayments();
+  };
+
+  const handleTodaysPaymentModalClose = () => {
+    setShowTodaysPaymentModal(false);
   };
 
   // Fetch data on component mount
@@ -355,8 +388,8 @@ const Dashboard = () => {
             onClick={handleAddNewClick}
             className="flex items-center bg-custom-orange hover:bg-blue-500 gap-3 rounded px-2 xlg:px-3  h-[2.5rem] text-xs xl:text-base xlg:text-sm text-[#F5F5F5] transition-colors duration-300 ease-in-out"
           >
-            <GoPlusCircle />
-            <h3>Add Patient</h3>
+            <GoPlusCircle className="xlg:text-xl text-lg" />
+            <h3 className="lg:flex hidden">Add Patient</h3>
           </button>
         </Topheader>
       </div>
@@ -390,9 +423,17 @@ const Dashboard = () => {
           </div>
         </div>
         <div className=" bg-white rounded-lg flex flex-col gap-2">
-          <h1 className="xlg:text-xl xxl:text-2xl text-base font-semibold">
-            Recent Appointments
-          </h1>
+          <div className="flex flex-row justify-between items-center">
+            <h1 className="xlg:text-xl xxl:text-2xl text-base font-semibold">
+              Recent Appointments
+            </h1>
+            <button
+              onClick={handleTodaysPaymentModalOpen}
+              className="xlg:text-xl xxl:text-2xl text-base font-semibold text-custom-green"
+            >
+              Todays Payment Details
+            </button>
+          </div>
           <div className="flex flex-col gap-3">
             {loading ? (
               <div className="flex justify-center items-center h-[100px]">
@@ -614,7 +655,7 @@ const Dashboard = () => {
           </div>
 
           <div
-            className={`fixed top-0 right-0 h-screen w-[60%] xl:w-[50%] overflow-scroll custom-scroll bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 right-0 h-screen w-[80%] lg:w-[65%] xl:w-[50%] overflow-scroll custom-scroll bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
               showEditPatient ? "translate-x-0" : "translate-x-full"
             }`}
           >
@@ -630,7 +671,7 @@ const Dashboard = () => {
           </div>
 
           <div
-            className={`fixed top-0 right-0 h-screen w-[60%] xl:w-[50%] overflow-scroll custom-scroll bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 right-0 h-screen w-[80%] lg:w-[65%] xl:w-[50%] overflow-scroll custom-scroll bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
               patientDocument ? "translate-x-0" : "translate-x-full"
             }`}
           >
@@ -640,6 +681,24 @@ const Dashboard = () => {
                   handleClose={handleAddDocumentsClose}
                   patient={selectedPatient}
                   onUpdate={updatePatientDocuments}
+                />
+              </div>
+            )}
+          </div>
+
+          <div
+            className={`fixed top-0 right-0 h-screen w-[80%] lg:w-[65%] xl:w-[50%] overflow-scroll custom-scroll bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+              showTodaysPaymentModal ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            {showTodaysPaymentModal && (
+              <div className="p-4">
+                <TodaysPaymentDetails
+                  handleClose={handleTodaysPaymentModalClose}
+                  patients={patientsWithPayments}
+                  loading={loading}
+                  patientPaymentStartDate={dateFilter.startDate}
+                  patientPaymentEndDate={dateFilter.endDate}
                 />
               </div>
             )}

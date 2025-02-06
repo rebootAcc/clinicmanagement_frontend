@@ -154,8 +154,8 @@ const EditPrescription = () => {
   return (
     <>
       <TopHeaderMini />
-      <div className="p-6 xl:p-6 flex gap-6 bg-[#EDF4F7]">
-        <div className="py-2 px-8 xl:px-6 flex flex-col gap-6">
+      <div className="p-6 xl:p-6 flex gap-6 bg-[#EDF4F7] w-full">
+        <div className="py-2 px-8 xl:px-6 flex flex-col gap-6 w-full">
           <PatientMedicalHistory
             patientId={patientId}
             onMedicalHistoryChange={handleMedicalHistoryChange}

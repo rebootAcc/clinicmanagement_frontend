@@ -22,6 +22,7 @@ const PrescriptionDetails = () => {
   const [isWhatsappModalOpen, setIsWhatsappModalOpen] = useState(false);
   const [clinicData, setClinicData] = useState(null);
   const { user } = useContext(AuthContext);
+  const [showSignature, setShowSignature] = useState(false);
 
   useEffect(() => {
     const fetchPrescriptionData = async () => {
@@ -104,6 +105,11 @@ const PrescriptionDetails = () => {
       handlePrint();
     }
   }, [prescriptionData]);
+
+  const handleCheckboxChange = () => {
+    setShowSignature((prevState) => !prevState);
+    handlePrint();
+  };
 
   if (!prescriptionData || !prescriptionData.prescriptions) {
     return <p>Loading...</p>;
@@ -204,11 +210,11 @@ const PrescriptionDetails = () => {
   };
 
   const handleSendWhatsApp = () => {
-    setIsWhatsappModalOpen(true); // Show the modal
+    setIsWhatsappModalOpen(true);
   };
 
   const closeWhatsappModal = () => {
-    setIsWhatsappModalOpen(false); // Close the modal
+    setIsWhatsappModalOpen(false);
   };
 
   const buttonData = [
@@ -218,9 +224,9 @@ const PrescriptionDetails = () => {
       onClick: handleDownload,
     },
     {
-      icon: <AiOutlineDownload className="size-5" />,
-      text: "Download",
-      onClick: "",
+      icon: <FiEdit className="size-5" />,
+      text: "Edit Prescription",
+      onClick: navigateToEditPage,
     },
     {
       icon: <PiMoneyWavy className="size-5" />,
@@ -242,8 +248,8 @@ const PrescriptionDetails = () => {
   return (
     <>
       <TopHeaderMini />
-      <div className="p-8 flex gap-6 bg-[#EDF4F7]">
-        <div className="rounded flex bg-white flex-col w-[20%] gap-4 py-7 px-6">
+      <div className="p-8 flex xlg:flex-row flex-col gap-6 bg-[#EDF4F7]">
+        <div className="rounded flex bg-white flex-col w-full xlg:w-[20%] gap-4 py-7 px-6">
           <h2 className="text-custom-gray xlg:text-base text-sm">
             Prescription Save Successful
           </h2>
@@ -267,6 +273,15 @@ const PrescriptionDetails = () => {
                 <span className="text-sm">{button.text}</span>
               </button>
             ))}
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={showSignature}
+                onChange={handleCheckboxChange}
+                className="size-4"
+              />{" "}
+              Want Showing Signature
+            </div>
           </div>
         </div>
         <div className="flex flex-col w-[80%] gap-4  rounded ">
@@ -276,7 +291,7 @@ const PrescriptionDetails = () => {
             </div>
           )}
           <div className="flex flex-col gap-4" ref={prescriptionRef}>
-            <div className="bg-white  flex flex-col a4-container ">
+            <div className="bg-white  flex flex-col a4-container relative ">
               <div className="flex flex-row gap-4 p-2 w-full items-center">
                 <div className="w-[20%]">
                   <img
@@ -345,7 +360,7 @@ const PrescriptionDetails = () => {
                 </div>
                 <div className="bg-[#F8F8F8] h-full p-4 w-[60%] rounded-xl mx-4 flex flex-col">
                   <div className="flex flex-col gap-2 h-[9rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium">
                       Medical History
                     </h1>
                     <div className="flex  flex-col ">
@@ -369,47 +384,55 @@ const PrescriptionDetails = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[7rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">CC</h1>
-                    <div className="flex flex-col">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium ">
+                      CC
+                    </h1>
+                    <div className="flex flex-col gap-1">
                       {prescriptionData.prescriptions[0].chiefComplain.map(
                         (cc, index) => (
                           <p
-                            className="text-sm flex gap-1 items-center"
+                            className="text-[13px] flex gap-1 items-center"
                             key={index}
                           >
                             {cc.chiefComplainName} -
-                            <RenderDentalChart dentalChart={cc.dentalChart} />
+                            <span className="marginTop">
+                              <RenderDentalChart dentalChart={cc.dentalChart} />
+                            </span>
                           </p>
                         )
                       )}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[12rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">O/E</h1>
-                    <div className="flex flex-col">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium">
+                      O/E
+                    </h1>
+                    <div className="flex flex-col gap-1">
                       {prescriptionData.prescriptions[0].onExamination.map(
                         (oe, index) => (
                           <div
                             key={index}
-                            className="flex flex-wrap text-sm gap-4"
+                            className="flex flex-wrap text-[13px] gap-4"
                           >
                             <h3>{oe.onExaminationName}</h3>
                             <p>{oe.onExaminationArea.join(", ")}</p>
                             <p>{oe.onExaminationAdditionalNotes}</p>
-                            <RenderDentalChart dentalChart={oe.dentalChart} />
+                            <div className="marginTop">
+                              <RenderDentalChart dentalChart={oe.dentalChart} />
+                            </div>
                           </div>
                         )
                       )}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[8rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium">
                       Investigation
                     </h1>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-1">
                       {prescriptionData.prescriptions[0].investigation.map(
                         (inv, index) => (
-                          <p className="text-sm" key={index}>
+                          <p className="text-[13px]" key={index}>
                             {inv.investigationName}
                           </p>
                         )
@@ -417,36 +440,44 @@ const PrescriptionDetails = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[9rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium">
                       Radiography
                     </h1>
                     <div className="grid grid-cols-1 gap-2">
                       {prescriptionData.prescriptions[0].radiography.map(
                         (rad, index) => (
                           <p
-                            className="text-sm flex flex-row items-center gap-1"
+                            className="text-[13px] flex flex-row items-center gap-1"
                             key={index}
                           >
                             {rad.radiographyName} -{" "}
-                            <RenderDentalChart dentalChart={rad.dentalChart} />
+                            <div className="marginTop">
+                              <RenderDentalChart
+                                dentalChart={rad.dentalChart}
+                              />
+                            </div>
                           </p>
                         )
                       )}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 min-h-[11rem]">
-                    <h1 className="text-sm/[0px] text-[#3B3B3B]">Advice</h1>
-                    <div className="">
+                    <h1 className="text-sm/[0px] text-[#3B3B3B] font-medium">
+                      Advice
+                    </h1>
+                    <div className="flex flex-col gap-1">
                       {prescriptionData.prescriptions[0].advices.map(
                         (advice, index) => (
                           <p
-                            className="text-sm flex flex-row items-center gap-1"
+                            className="text-[13px] flex flex-row items-center gap-1"
                             key={index}
                           >
                             {advice.advicesName},{" "}
-                            <RenderDentalChart
-                              dentalChart={advice.dentalChart}
-                            />
+                            <div className="marginTop">
+                              <RenderDentalChart
+                                dentalChart={advice.dentalChart}
+                              />
+                            </div>
                           </p>
                         )
                       )}
@@ -454,8 +485,17 @@ const PrescriptionDetails = () => {
                   </div>
                 </div>
               </div>
+              <div className="w-full  absolute inset-0 bottom-2 flex justify-end items-end px-8">
+                {showSignature && user.doctorSignature?.secure_url ? (
+                  <img
+                    src={user.doctorSignature.secure_url}
+                    alt="signature"
+                    className="h-[5rem] w-[5rem]"
+                  />
+                ) : null}
+              </div>
             </div>
-            <div className="bg-white  a4-container">
+            <div className="bg-white  a4-container relative">
               {/* <div className="flex flex-row gap-4 p-4 w-full border-b  items-center">
                 <div className="w-[20%]">
                   <img
@@ -530,15 +570,15 @@ const PrescriptionDetails = () => {
                     )
                   )}
                 </div>
-                <div className="w-full flex justify-end items-end px-8">
-                  {user.doctorSignature?.secure_url ? (
-                    <img
-                      src={user.doctorSignature.secure_url}
-                      alt="signature"
-                      className="h-[5rem] w-[5rem]"
-                    />
-                  ) : null}
-                </div>
+              </div>
+              <div className="w-full  absolute inset-0 bottom-2 flex justify-end items-end px-8">
+                {showSignature && user.doctorSignature?.secure_url ? (
+                  <img
+                    src={user.doctorSignature.secure_url}
+                    alt="signature"
+                    className="h-[5rem] w-[5rem]"
+                  />
+                ) : null}
               </div>
             </div>
           </div>

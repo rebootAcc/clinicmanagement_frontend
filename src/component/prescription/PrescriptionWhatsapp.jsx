@@ -37,46 +37,23 @@ const PrescriptionWhatsapp = ({ patientId, prescriptionId, closeModal }) => {
     return <div>Loading...</div>;
   }
 
-  const handleSendPrescription = async () => {
-    try {
-      const formattedPhoneNumber = phoneNumber.startsWith("91")
-        ? phoneNumber
-        : "91" + phoneNumber;
+  const handleSendPrescription = async (e) => {
+    e.preventDefault();
 
-      const payload = {
-        "auth-key": "your-auth-key",
-        "app-key": "your-app-key",
-        destination_number: formattedPhoneNumber,
-        template_id: "your-template-id",
-        device_id: "your-device-id",
-        variables: [],
-        media: prescriptionPdfUrl,
-      };
+    // Construct the WhatsApp message
+    const whatsappMessage = `*Patient Details:*\n\n👤 Name: ${prescriptionData.patientName}\n📞 Mobile: ${phoneNumber}\n📄 Prescription PDF: ${prescriptionPdfUrl}`;
 
-      const response = await axios.post(
-        "https://web.wabridge.com/api/createmessage",
-        payload
-      );
+    // Encode the message
+    const encodedMessage = encodeURIComponent(whatsappMessage);
 
-      if (response.data.status === true) {
-        toast.success("Prescription sent successfully!", {
-          position: "bottom-center",
-          icon: "✅",
-        });
-        closeModal();
-      } else {
-        toast.error("Failed to send prescription.", {
-          position: "bottom-center",
-          icon: "❌",
-        });
-      }
-    } catch (error) {
-      console.error("Error sending prescription:", error);
-      toast.error("An error occurred while sending the prescription.", {
-        position: "bottom-center",
-        icon: "❌",
-      });
-    }
+    // Check if the user is on desktop or mobile
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const whatsappUrl = isDesktop
+      ? `https://web.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`
+      : `https://api.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`;
+
+    // Open WhatsApp with the message
+    window.open(whatsappUrl, "_blank");
   };
 
   return (

@@ -47,7 +47,7 @@ const PatientDataImportInCSV = ({ handleAddPatient }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="xlg:flex hidden flex-col items-center">
       {/* File input, hidden but triggered on button click */}
       <input
         type="file"

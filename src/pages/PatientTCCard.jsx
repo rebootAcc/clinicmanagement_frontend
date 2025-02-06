@@ -126,7 +126,7 @@ const PatientTCCard = () => {
         patientData.patientTcCard.length > 0 ? (
           <div>
             <h3 className="text-xl font-bold">Patient TC Cards</h3>
-            <div className=" grid grid-cols-3 gap-6">
+            <div className=" grid grid-cols-1 lg:grid-cols-2 xlg:grid-cols-3 gap-6">
               {patientData.patientTcCard.map((tcCard, index) => {
                 if (tcCard.tccardPdf && tcCard.tccardPdf.secure_url) {
                   return (

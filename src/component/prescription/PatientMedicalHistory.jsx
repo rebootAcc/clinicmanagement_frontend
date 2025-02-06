@@ -144,7 +144,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
   const handleAddHistory = async () => {
     const { patientMedicalHistoryName, duration, medicines } = currentInput;
 
-    if (!patientMedicalHistoryName) return; // Exit if no name is provided
+    if (!patientMedicalHistoryName) return;
 
     try {
       // Check if the medical history item already exists
@@ -220,7 +220,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
     search = ""
   ) => {
     if (!patientMedicalHistoryName) {
-      setShowMedicineSuggestions(false); // Hide dropdown if no medical history name
+      setShowMedicineSuggestions(false);
       return;
     }
 
@@ -229,7 +229,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/api/patientmedicalhistory/getMedicinesByHistoryName`,
-        { params: { patientMedicalHistoryName, search } } // Send search query to backend
+        { params: { patientMedicalHistoryName, search } }
       );
       setMedicineSuggestions(response.data.medicines || []);
       setShowMedicineSuggestions(true);
@@ -279,7 +279,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
         medicineSearch: "",
       }));
     }
-    setShowMedicineSuggestions(false); // Hide dropdown after selection
+    setShowMedicineSuggestions(false);
   };
 
   const handleMedicineRemove = (medicine) => {
@@ -290,7 +290,6 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
   };
 
   const handleMedicineKeyPress = (event) => {
-    // Handle ArrowDown and ArrowUp key events for navigating through suggestions
     if (
       event.key === "ArrowDown" &&
       showMedicineSuggestions &&
@@ -309,35 +308,29 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
       setActiveIndex((prevIndex) =>
         prevIndex > 0 ? prevIndex - 1 : medicineSuggestions.length - 1
       );
-    }
-
-    // Handle Enter key for selecting a suggestion or adding a new medicine
-    else if (event.key === "Enter") {
+    } else if (event.key === "Enter") {
       event.preventDefault();
 
       if (activeIndex >= 0 && medicineSuggestions[activeIndex]) {
-        // If there's a selected suggestion, add it to the list
         const selectedMedicine = medicineSuggestions[activeIndex];
         if (!currentInput.medicines.includes(selectedMedicine)) {
           setCurrentInput((prev) => ({
             ...prev,
             medicines: [...prev.medicines, selectedMedicine],
-            medicineSearch: "", // Clear the input after selection
+            medicineSearch: "",
           }));
         }
       } else if (event.target.value.trim()) {
-        // If no suggestion is selected, add the manually typed medicine to the list
         const newMedicine = event.target.value.trim();
         if (!currentInput.medicines.includes(newMedicine)) {
           setCurrentInput((prev) => ({
             ...prev,
             medicines: [...prev.medicines, newMedicine],
-            medicineSearch: "", // Clear the input field after adding
+            medicineSearch: "",
           }));
         }
       }
 
-      // Clear the medicine search input field
       event.target.value = "";
     }
   };
@@ -350,7 +343,6 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
 
     setMedicalHistory(updatedHistory);
 
-    // Notify the parent with the entire updated array
     onMedicalHistoryChange(updatedHistory);
   };
 
@@ -362,7 +354,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
         inputRef.current &&
         !inputRef.current.contains(event.target)
       ) {
-        setShowSuggestions(false); // Hide patientMedicalHistoryName dropdown
+        setShowSuggestions(false);
       }
 
       if (
@@ -371,7 +363,7 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
         medicineInputRef.current &&
         !medicineInputRef.current.contains(event.target)
       ) {
-        setShowMedicineSuggestions(false); // Hide medicine dropdown
+        setShowMedicineSuggestions(false);
       }
     };
 
@@ -383,8 +375,13 @@ const PatientMedicalHistory = ({ patientId, onMedicalHistoryChange }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="pb-2 border-b border-[#00000033]">
-        <label htmlFor="">Medical History</label>
+      <div className="pb-2 xlg:pb-4 border-b text-lg xl:text-xl border-[#00000033]">
+        <label
+          htmlFor=""
+          className="text-black text-base lg:text-lg xl:text-xl min-w-[26.4vmax]"
+        >
+          Medical History
+        </label>
       </div>
       <div className="py-2 grid grid-cols-3 gap-3">
         {medicalHistory.map((data, index) => (

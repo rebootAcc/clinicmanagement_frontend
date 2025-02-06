@@ -240,24 +240,24 @@ const OnExamination = ({ onChange, existingData = [] }) => {
   };
 
   return (
-    <div className="flex flex-col py-4 ">
-      <div className="flex gap-5 pb-4 border-b border-black/20">
-        <h3 className="text-black text-lg xl:text-xl min-w-[26.4vmax]">
+    <div className="flex flex-col py-4 w-full ">
+      <div className="flex gap-5 pb-2 xlg:pb-4 border-b border-black/20">
+        <h3 className="text-black text-base lg:text-lg xl:text-xl min-w-[26.4vmax]">
           On Examination
         </h3>
       </div>
 
-      <div className="pt-4">
+      <div className="pt-4 w-full flex flex-col gap-2">
         {fields.map((field, index) => (
-          <div key={index} className="flex gap-5 py-1">
-            <div className="flex flex-col gap-2 min-w-[25.4vmax] relative">
-              <div className="bg-white flex px-4 xl:px-6 py-3 xl:py-4 rounded gap-2">
+          <div key={index} className="flex gap-2 xlg:gap-5 w-full">
+            <div className="flex flex-col gap-2 w-[35%]  relative">
+              <div className="bg-white flex px-2 xl:px-6 py-3 xl:py-4 rounded gap-2">
                 <input
                   type="text"
                   name="searchTerm"
                   autoComplete="off"
                   placeholder="On Examination"
-                  className="bg-transparent outline-none text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
+                  className="bg-transparent outline-none lg:text-base text-sm xlg:text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
                   value={field.searchTerm}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -307,7 +307,7 @@ const OnExamination = ({ onChange, existingData = [] }) => {
               )}
             </div>
 
-            <div className="bg-white flex flex-wrap items-center gap-2 px-4 xl:px-6 py-3 xl:py-4 rounded min-w-[25.4vmax] relative">
+            <div className="bg-white flex flex-wrap items-center gap-2 px-2 xl:px-6 py-3 xl:py-4 rounded w-[25%] relative">
               {field.area.map((area, idx) => (
                 <span
                   key={idx}
@@ -329,7 +329,7 @@ const OnExamination = ({ onChange, existingData = [] }) => {
                 name="area"
                 autoComplete="off"
                 placeholder="Add area and press Enter"
-                className="bg-transparent outline-none text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
+                className="bg-transparent outline-none lg:text-base text-sm xlg:text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
                 onKeyDown={(e) => handleAreaInputKeyPress(e, index)}
                 onFocus={() => updateField(index, { showAreaDropdown: true })}
                 onBlur={() =>
@@ -355,42 +355,42 @@ const OnExamination = ({ onChange, existingData = [] }) => {
               )}
             </div>
 
-            <div className="bg-white flex px-4 xl:px-6 py-3 xl:py-4 rounded gap-2 min-w-[25.4vmax]">
+            <div className="bg-white flex px-2 xl:px-6 py-3 xl:py-4 rounded gap-2 w-[20%]">
               <input
                 type="text"
                 name="notes"
                 placeholder="Notes..."
-                className="bg-transparent outline-none text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
+                className="bg-transparent outline-none lg:text-base text-sm xlg:text-lg xl:text-xl placeholder:text-[#d5d5d5] w-full"
                 value={field.notes}
                 onChange={(e) => handleInputChange(index, e)}
               />
             </div>
 
             {field.dentalChart.length > 0 && (
-              <div className="text-sm text-gray-500 mt-2">
+              <div className="xlg:text-sm text-xs text-gray-500 mt-2">
                 Selected Dental Chart: {field.dentalChart.join(", ")}
               </div>
             )}
 
-            <div className="flex flex-row  flex-1 ">
-              <div className="flex flex-row gap-2 justify-between flex-1">
+            <div className="flex flex-row  w-[20%] ">
+              <div className="flex flex-row gap-2 justify-between ">
                 <button
                   type="button"
                   onClick={() => handleDentalChart(index)}
-                  className="text-custom-gray inline-flex items-center gap-2 justify-center bg-white rounded px-4 py-2 text-base"
+                  className="text-custom-gray inline-flex items-center gap-2 justify-center bg-white rounded px-2 py-1 lg:px-4 lg:py-2 text-sm lg:text-base"
                 >
                   <CiCirclePlus className="text-xl font-bold" /> DC
                 </button>
                 <button
                   type="button"
-                  className="text-custom-green inline-flex items-center justify-center bg-white rounded px-4 py-2 text-base"
+                  className="text-custom-green inline-flex items-center justify-center bg-white rounded px-2 py-1 lg:px-4 lg:py-2 text-sm lg:text-base"
                   onClick={addField}
                 >
                   <CiCirclePlus />
                 </button>
                 <button
                   type="button"
-                  className="text-[#E40000] inline-flex items-center justify-center bg-white rounded px-4 py-2 text-base"
+                  className="text-[#E40000] inline-flex items-center justify-center bg-white rounded px-2 py-1 lg:px-4 lg:py-2 text-sm lg:text-base"
                   onClick={() => removeField(index)}
                   disabled={fields.length === 1}
                 >
@@ -402,7 +402,7 @@ const OnExamination = ({ onChange, existingData = [] }) => {
         ))}
       </div>
       <div
-        className={`fixed top-0 right-0 h-screen w-[60%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-screen w-[90%] lg:w-[80%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
           showDentalChart !== null ? "translate-x-0" : "translate-x-full"
         }`}
       >

@@ -129,8 +129,8 @@ const Topheader = ({
   };
 
   return (
-    <header className="flex justify-between pb-4 xlg:pb-5 p-2 px-4 xlg:p-4 xlg:px-8 border-b border-black/20">
-      <div className="flex flex-row gap-4">
+    <header className="flex justify-between pb-4 xlg:pb-5 p-2 px-2 xlg:p-4 xlg:px-8 border-b border-black/20">
+      <div className="flex flex-row gap-1 xlg:gap-4">
         <div className="relative">
           <input
             type="text"
@@ -139,7 +139,7 @@ const Topheader = ({
               dateRange[0].startDate,
               "dd/MM/yyyy"
             )} To: ${format(dateRange[0].endDate, "dd/MM/yyyy")}`}
-            className="h-[2.5rem] px-6 rounded-md bg-[#F5F5F5] text-sm cursor-pointer outline-none"
+            className="h-[2.5rem] px-2 xlg:px-6 rounded-md bg-[#F5F5F5] text-xs xlg:text-sm cursor-pointer outline-none"
             onClick={handleDateClick}
           />
 
@@ -156,14 +156,14 @@ const Topheader = ({
 
         {!isDateFiltered ? (
           <button
-            className="h-[2.5rem] px-6 flex justify-center items-center bg-custom-blue rounded text-white text-base"
+            className="h-[2.5rem] xlg:px-6 flex justify-center items-center bg-white  xlg:bg-custom-blue rounded text-custom-blue xlg:text-white text-base font-medium xlg:font-normal xlg:text-base"
             onClick={handleShow}
           >
             Show
           </button>
         ) : (
           <button
-            className="h-[2.5rem] px-6 flex justify-center items-center bg-gray-300 rounded text-black text-base"
+            className="h-[2.5rem] xlg:px-6 flex justify-center items-center bg-transparent xlg:bg-gray-300 rounded xlg:text-black text-base font-medium xlg:font-normal xlg:text-base"
             onClick={handleClear}
           >
             Clear
@@ -179,7 +179,7 @@ const Topheader = ({
             );
             setFavClinic(selectedClinic);
           }}
-          className="block w-full appearance-none cursor-pointer truncate px-2 xlg:px-6 h-[2.5rem] pe-2 bg-[#F5F5F5] focus:outline-none"
+          className="block w-full appearance-none cursor-pointer truncate px-1 xlg:px-6 h-[2.5rem] pe-2 bg-[#F5F5F5] focus:outline-none xlg:text-sm text-[10px]"
         >
           {clinics?.length > 0 &&
             clinics.map((clinic) => (
@@ -188,15 +188,15 @@ const Topheader = ({
               </option>
             ))}
         </select>
-        <FaCaretDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-600" />
+        <FaCaretDown className="absolute right-0 xlg:right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-600" />
       </div>
-      <div className="flex items-center bg-[#F5F5F5] gap-3 rounded px-6 h-[2.5rem]">
+      <div className="flex items-center bg-[#F5F5F5] gap-3 rounded px-2 xlg:px-6 h-[2.5rem]">
         <input
           type="text"
           placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="text-custom-gray text-xs xl:text-base xlg:text-sm placeholder:text-custom-gray bg-[#F5F5F5] placeholder-[#00000080] focus:outline-none"
+          className="text-custom-gray text-[10px] xl:text-base xlg:text-sm placeholder:text-custom-gray bg-[#F5F5F5] placeholder-[#00000080] focus:outline-none"
         />
         <button
           type="button"
@@ -257,7 +257,7 @@ const Topheader = ({
       </div>
       <div
         ref={modalRef}
-        className={`fixed top-0 right-0 h-screen w-[60%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-screen w-[80%] lg:w-[60%] xl:w-[50%] overflow-scroll z-[100] custom-scroll  bg-[#EDF4F7] shadow-lg transform transition-transform duration-300 ease-in-out ${
           isModalShow || addClinicShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
